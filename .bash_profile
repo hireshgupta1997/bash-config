@@ -17,6 +17,13 @@ alias dr='docker run'
 alias dkill='docker kill'
 alias drm='docker rm'
 
+# Tmux Commands
+alias tmxls='tmux list-session'
+alias tmxas='tmux attach'
+
+# Maven Commands
+alias mci='mvn clean install'
+alias mc='mvn clean'
 
 # Source .bashrc
 source ~/.bashrc
