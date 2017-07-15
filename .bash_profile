@@ -9,7 +9,10 @@ alias gds='git diff --staged'
 alias gc='git commit'
 alias gcm='git commit -m '
 alias grh='git reset HEAD'
-
+alias gf='git fetch'
+alias grem='git remote'
+alias greb='git rebase'
+alias gclo='git clone'
 
 # Docker Commands
 alias dps='docker ps'
