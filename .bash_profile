@@ -10,9 +10,10 @@ alias gc='git commit'
 alias gcm='git commit -m '
 alias grh='git reset HEAD'
 alias gf='git fetch'
-alias grem='git remote'
-alias greb='git rebase'
-alias gclo='git clone'
+alias gremote='git remote'
+alias grebase='git rebase'
+alias gclone='git clone'
+alias gclean='git reset --hard && git clean -d -f -x'
 
 # Docker Commands
 alias dps='docker ps'
