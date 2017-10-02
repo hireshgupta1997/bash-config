@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Test file for colors.sh
-source '../colors.sh'
+source 'colors.sh'
 
 MESSAGE='The quick brown fox jumps over the lazy dog.'
 
