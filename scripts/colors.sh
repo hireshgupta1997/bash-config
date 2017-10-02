@@ -17,4 +17,3 @@ LCYAN='\033[1;36m'
 WHITE='\033[1;37m'
 NC='\033[0;m'
 
-echo -e 'Loaded colors.sh'
