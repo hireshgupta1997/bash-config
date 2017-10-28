@@ -4,11 +4,15 @@ source 'scripts/colors.sh'
 
 echo -e ${ORANGE}'Running install.sh'${NC}
 
-mkdir -p ~/bin
-echo -e ${LBLUE}'Copying scripts to ~/bin'${NC}
-for file in scripts/*.sh ; do
-    cp $file ~/bin/ && echo -e "Copied $file"
-done
-
 cp .bash_profile ~/.bash_profile
+echo -e ${ORANGE}'Profile Installed.'${NC}
+
+echo -e ${ORANGE}'Copying scripts to ~/bin'${NC}
+mkdir -p ~/bin
+for file in scripts/*; do
+	if [[ -f $file ]]; then
+		cp --verbose $file ~/bin/
+	fi
+done
+echo -e ${ORANGE}'Copying completed.'${NC}
 echo -e ${LGREEN}'Scripts Installation Complete.'${NC}
