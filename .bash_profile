@@ -3,7 +3,7 @@
 alias gs='git status'
 alias ga='git add'
 alias gb='git branch'
-alias gl='git log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%C(cyan)\\ [%cn]" --decorate --date=short'
+alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gd='git diff'
 alias gdc='git diff --cached'
 alias gds='git diff --staged'
