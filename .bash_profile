@@ -25,6 +25,7 @@ alias drm='docker rm'
 # Tmux Commands
 alias tmxls='tmux list-session'
 alias tmxas='tmux attach'
+alias tmxns='tmux new -s'
 
 # Maven Commands
 alias mci='mvn clean install'
