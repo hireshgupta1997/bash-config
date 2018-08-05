@@ -6,7 +6,7 @@ STATUS=${ORANGE}
 SUCCESS=${LGREEN}
 WARN=${LCYAN}
 
-INSTALL_VUNDLE=${INSTALL_VUNDLE:-0}
+FORCE=${FORCE:-0}
 
 echo -e ${STATUS}'Running install.sh'${NC}
 
@@ -31,19 +31,31 @@ if [ ! -z ${VIM_PATH} ]; then
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		echo -e ${STATUS}'Intalling vundle'${NC}
 		if [ -d ~/.vim/bundle/Vundle.vim ]; then
-			if [ "${INSTALL_VUNDLE}" -eq "1" ]; then
+			if [ "${FORCE}" -eq "1" ]; then
 				echo -e ${STATUS}'Removing existing Vundle'${NC}
 				rm -rf ~/.vim/bundle/Vundle.vim
 			else
 				echo -e ${WARN}'Vundle already exists ...'${NC}
-				echo -e ${WARN}'Run: INSTALL_VUNDLE=1 ./install.sh to re-install'${NC}
+				echo -e ${WARN}'Run: FORCE=1 ./install.sh to re-install'${NC}
 			fi
 		fi
-		git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-		echo -e ${STATUS}'Copyting .vimrc to ~/.vimrc'${NC}
+		git clone --depth 1 https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+		echo -e ${STATUS}'Copying .vimrc to ~/.vimrc'${NC}
 		cp -r .vimrc ~/.vimrc
 		echo -e ${SUCCESS}'Copying completed.'${NC}
 		echo -e ${STATUS}'Installing plugins'${NC}
+		echo -e ${STATUS}'Installing YouCompleteMe'${NC}
+		if [ -d ~/.vim/bundle/YouCompleteMe ]; then
+			if [ "${FORCE}" -eq "1" ]; then
+				echo -e ${STATUS}'Removing existing YouCompleteMe'${NC}
+				rm -rf ~/.vim/bundle/YouCompleteMe
+			else
+				echo -e ${WARN}'YouCompleteMe  already exists ...'${NC}
+				echo -e ${WARN}'Run: FORCE=1 ./install.sh to re-install'${NC}
+			fi
+		fi
+		git clone --depth 1 --recurse-submodules -j8 https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/YouCompleteMe
+		cd ~/.vim/bundle/YouCompleteMe && python install.py
 		vim +PluginInstall +qall
 		echo -e ${SUCCESS}'Plugin installation completed'${NC}
 	fi
