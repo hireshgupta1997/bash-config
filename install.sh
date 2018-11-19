@@ -64,7 +64,7 @@ fi
 # Now install zsh related features
 if [ -z $(which zsh) ]; then
 	echo -e ${STATUS}Installing zsh ...${NC}
-	sudo apt -y install zsh
+	apt-get -y install zsh
 	echo -e ${SUCCESS}Installed zsh. ${NC}
 fi
 
@@ -73,7 +73,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 echo -e ${SUCCESS}Installed oh-my-zsh. ${NC}
 
 echo -e ${STATUS}Installing powerline fonts ... ${NC}
-sudo apt-get -y install fonts-powerline
+apt-get -y install fonts-powerline
 echo -e ${SUCCESS}Installed powerline fonts. ${NC}
 
 echo -e ${STATUS}Installing zsh-autosuggestions ... ${NC}
