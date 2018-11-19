@@ -60,3 +60,31 @@ if [ ! -z ${VIM_PATH} ]; then
 		echo -e ${SUCCESS}'Plugin installation completed'${NC}
 	fi
 fi
+
+# Now install zsh related features
+if [ -z $(which zsh) ]; then
+	echo -e ${STATUS} Installing zsh ...${NC}
+	sudo apt -y install zsh
+	echo -e ${SUCCESS} Installed zsh. ${NC}
+fi
+
+echo -e ${STATUS} Installing oh-my-zsh ... ${NC}
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+echo -e ${SUCCESS} Installed oh-my-zsh. ${NC}
+
+echo -e ${STATUS} Installing powerline fonts ... ${NC}
+sudo apt-get -y install fonts-powerline
+echo -e ${SUCCESS} Installed powerline fonts. ${NC}
+
+echo -e ${STATUS} Installing zsh-autosuggestions ... ${NC}
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+sed -i 's/fg=8/fg=4/' ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+echo -e ${SUCCESS} Installed zsh-autosuggestions. ${NC}
+
+echo -e ${STATUS} Copying .zshrc ... ${NC}
+cp .zshrc ~/.zshrc
+echo -e ${SUCCESS} Copied .zshrc. ${NC}
+
+echo -e ${STATUS} Setting default shell to zsh... ${NC}
+chsh -s $(which zsh)
+echo -e ${SUCCESS} Completed. ${NC}
