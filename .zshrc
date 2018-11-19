@@ -94,6 +94,7 @@ alias mci='mvn clean install'
 alias mc='mvn clean'
 # Custom Helper Commands
 alias catc='pygmentize -g'
+alias tmux='tmux -u'
 
 export PATH=$PATH:~/bin
 
