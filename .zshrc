@@ -71,7 +71,7 @@ plugins=(
   extract
   zsh-autosuggestions
 )
-
+. ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/rupaz/z.sh
 source $ZSH/oh-my-zsh.sh
 # User configuration
 

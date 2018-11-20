@@ -79,7 +79,11 @@ echo -e ${SUCCESS}Installed powerline fonts. ${NC}
 echo -e ${STATUS}Installing zsh-autosuggestions ... ${NC}
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 sed -i 's/fg=8/fg=4/' ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-echo -e ${SUCCESS} Installed zsh-autosuggestions. ${NC}
+echo -e ${SUCCESS}Installed zsh-autosuggestions. ${NC}
+
+echo -e ${STATUS}Installing z jump around ... ${NC}
+git clone https://github.com/rupa/z.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/rupaz
+echo -e ${SUCCESS}Installed z jump around. ${NC}
 
 echo -e ${STATUS}Copying .zshrc ... ${NC}
 cp .zshrc ~/.zshrc
