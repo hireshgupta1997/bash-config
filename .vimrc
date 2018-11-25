@@ -53,3 +53,6 @@ filetype plugin indent on    " required
 set laststatus=2
 
 map <C-o> :NERDTreeToggle<CR>
+set ttymouse=xterm2
+set mouse=a
+

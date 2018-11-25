@@ -27,7 +27,9 @@ VIM_PATH=$(which vim)
 if [ ! -z ${VIM_PATH} ]; then
 	echo -e ${STATUS}'Detected an installed vim instance at ${VIM_PATH}'${NC}
 	read -p "Do you want to install the plugins (y/n)?" -n 1 -r
-	echo -e
+	if [ ! -t 1 ]; then
+		REPLY=y
+	fi
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		echo -e ${STATUS}'Intalling vundle'${NC}
 		if [ -d ~/.vim/bundle/Vundle.vim ]; then
@@ -54,7 +56,7 @@ if [ ! -z ${VIM_PATH} ]; then
 				echo -e ${WARN}'Run: FORCE=1 ./install.sh to re-install'${NC}
 			fi
 		fi
-		git clone --depth 1 --recurse-submodules -j8 https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/YouCompleteMe
+		git clone --depth 1 --recurse-submodules https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/YouCompleteMe
 		cd ~/.vim/bundle/YouCompleteMe && python install.py
 		vim +PluginInstall +qall
 		echo -e ${SUCCESS}'Plugin installation completed'${NC}
