@@ -124,3 +124,6 @@ export PATH=$PATH:~/bin
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+if [ -f ~/.zshrc_local ]; then
+	source ~/.zshrc_local
+fi
