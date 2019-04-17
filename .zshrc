@@ -68,6 +68,7 @@ ZSH_THEME="ys"
 plugins=(
 #  vi-mode
   git
+  gitfast
   extract
   zsh-autosuggestions
 )
