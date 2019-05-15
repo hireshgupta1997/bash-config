@@ -33,7 +33,7 @@ fi
 shift
 
 URL=$1
-if [[ -z "${URL}" || ( ! ${URL} =~ ^[a-z0-9_-]*$ && ! ${URL} =~ ^[a-z0-9]*@[a-z0-9_-]*$ ) ]]; then
+if [[ -z "${URL}" || ( ! ${URL} =~ ^[a-z0-9_.-]*$ && ! ${URL} =~ ^[a-z0-9.]*@[a-z0-9_.-]*$ ) ]]; then
     echo -e "Inavlid [USER@]HOST"
     exit 1
 fi
