@@ -66,11 +66,12 @@ ZSH_THEME="ys"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-#  vi-mode
+  vi-mode
   git
   gitfast
   extract
   zsh-autosuggestions
+  history-substring-search
 )
 . ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/rupaz/z.sh
 source $ZSH/oh-my-zsh.sh
