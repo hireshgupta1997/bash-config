@@ -1,1 +1,1 @@
-curl https://cdn.rawgit.com/unwitting/imageme/master/imageme.py  | python
+curl https://cdn.jsdelivr.net/gh/unwitting/imageme/imageme.py  | python
