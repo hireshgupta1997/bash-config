@@ -97,6 +97,7 @@ alias mc='mvn clean'
 # Custom Helper Commands
 alias catc='pygmentize -g'
 alias tmux='tmux -u'
+alias cclip='xargs echo -n | xclip -selection clipboard'
 
 export PATH=$PATH:~/bin
 
