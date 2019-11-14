@@ -5,6 +5,7 @@ import os
 import sys
 
 import tqdm
+import numpy as np
 from PIL import Image
 import pathos.multiprocessing as mp
 from contextlib import closing
@@ -28,6 +29,12 @@ def parse_args():
     parser_resize.add_argument('-m', '--mode', default='nearest', help='resize mode in [nearest, linear, bicubic, antialias]')
     parser_resize.add_argument('--no_preserve_aspect_ratio', action='store_false', default=True, help='use to not preserve aspect ratio')
     parser_resize.add_argument('-t', '--threads', type=int, default=1, help='number of threads to run the job on.')
+
+    parser_exec = subparsers.add_parser('execute', help='execute custom Pillow or numpy command')
+    parser_exec.add_argument('-i', '--input', help='input image or directory')
+    parser_exec.add_argument('-o', '--output', help='output directory')
+    parser_exec.add_argument('-t', '--threads', type=int, default=1, help='number of threads to run the job on.')
+    parser_exec.add_argument('-e', '--execute', type=str, help='custom commands to run. use img or image_arr to refer to input image. image_arr is saved to the output')
 
     return parser.parse_args()
 
@@ -64,6 +71,23 @@ def _resize_image(input_path, output_dir, size, mode, preserve_aspect_ratio):
         _logger.exception('exception when processing %s', file_name)
 
 
+def _execute_image(input_path, output_dir, execute):
+    file_name = os.path.basename(input_path)
+    try:
+        output_file = os.path.join(output_dir, file_name)
+        with Image.open(input_path) as img:
+            image_arr = np.array(img, dtype=np.uint8)
+            vars = {}
+            vars.update(globals())
+            vars.update(locals())
+            exec(execute, vars)
+            del(vars)
+            target_image = Image.fromarray(image_arr)
+            target_image.save(output_file)
+    except Exception:
+        _logger.exception('exception when processing %s', file_name)
+
+
 class ImageOps(object):
 
     def __init__(self, args):
@@ -93,6 +117,22 @@ class ImageOps(object):
 
         pool = EasyPool(lambda image_path: _resize_image(image_path, self.args.output, target_size, mode,
                                                          self.args.no_preserve_aspect_ratio), self.args.threads, True)
+        pool.map(input_files)
+
+    def execute(self):
+        _logger.info('command: exec')
+        input_files = []
+        if os.path.isdir(self.args.input):
+            files = os.listdir(self.args.input)
+            file_paths = [os.path.join(self.args.input, item) for item in files]
+            input_files.extend(file_paths)
+        else:
+            input_files.append(self.args.input)
+
+        if not os.path.exists(self.args.output):
+            os.makedirs(self.args.output, exist_ok=True)
+
+        pool = EasyPool(lambda image_path: _execute_image(image_path, self.args.output, self.args.execute), self.args.threads, True)
         pool.map(input_files)
 
     def unknown_command(self):
