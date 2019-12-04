@@ -66,7 +66,7 @@ fi
 # Now install zsh related features
 if [ -z $(which zsh) ]; then
 	echo -e ${STATUS}Installing zsh ...${NC}
-	apt-get -y install zsh
+	sudo apt-get update && sudo apt-get -y install zsh
 	echo -e ${SUCCESS}Installed zsh. ${NC}
 fi
 
@@ -92,7 +92,7 @@ cp .zshrc ~/.zshrc
 echo -e ${SUCCESS}Copied .zshrc. ${NC}
 
 echo -e ${STATUS}Setting default shell to zsh... ${NC}
-chsh -s $(which zsh)
+sudo chsh -s $(which zsh)
 echo -e ${SUCCESS}Completed. ${NC}
 
 echo -e ${STATUS}Configuring tmux ${NC}
