@@ -75,7 +75,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 echo -e ${SUCCESS}Installed oh-my-zsh. ${NC}
 
 echo -e ${STATUS}Installing powerline fonts ... ${NC}
-apt-get -y install fonts-powerline
+sudo apt-get -y install fonts-powerline
 echo -e ${SUCCESS}Installed powerline fonts. ${NC}
 
 echo -e ${STATUS}Installing zsh-autosuggestions ... ${NC}
