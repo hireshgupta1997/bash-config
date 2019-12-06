@@ -92,7 +92,7 @@ cp .zshrc ~/.zshrc
 echo -e ${SUCCESS}Copied .zshrc. ${NC}
 
 echo -e ${STATUS}Setting default shell to zsh... ${NC}
-sudo chsh -s $(which zsh)
+chsh -s $(which zsh)
 echo -e ${SUCCESS}Completed. ${NC}
 
 echo -e ${STATUS}Configuring tmux ${NC}
