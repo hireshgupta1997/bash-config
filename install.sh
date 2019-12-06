@@ -66,7 +66,7 @@ fi
 # Now install zsh related features
 if [ -z $(which zsh) ]; then
 	echo -e ${STATUS}Installing zsh ...${NC}
-	sudo apt-get update && sudo apt-get -y install zsh
+	sudo apt-get -y install zsh
 	echo -e ${SUCCESS}Installed zsh. ${NC}
 fi
 
