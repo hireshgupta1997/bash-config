@@ -99,7 +99,7 @@ alias catc='pygmentize -g'
 alias tmux='tmux -u'
 alias cclip='xargs echo -n | xclip -selection clipboard'
 
-export PATH=$PATH:~/bin
+export PATH=$PATH:~/bin:~/.local/bin
 
 # export MANPATH="/usr/local/man:$MANPATH"
 

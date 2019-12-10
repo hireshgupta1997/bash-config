@@ -48,4 +48,4 @@ export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[35;1m
 
 # Set ls colors
 export LS_COLORS=$LS_COLORS:"di=1;90:fi=96:ex=1;32"
-export PATH=$PATH:~/bin
+export PATH=$PATH:~/bin:~/.local/bin
