@@ -56,9 +56,9 @@ if [ ! -z ${VIM_PATH} ]; then
 				echo -e ${WARN}'Run: FORCE=1 ./install.sh to re-install'${NC}
 			fi
 		fi
-		git clone --depth 1 --recurse-submodules https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/YouCompleteMe
+		git clone --depth 1 --recurse-submodules https://github.com/ycm-core/YouCompleteMe.git ~/.vim/bundle/YouCompleteMe
 		olddir=`pwd`
-		cd ~/.vim/bundle/YouCompleteMe && python install.py
+		cd ~/.vim/bundle/YouCompleteMe && python3 install.py --all
 		cd $olddir
 		vim +PluginInstall +qall
 		echo -e ${SUCCESS}'Plugin installation completed'${NC}
