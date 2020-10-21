@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 source 'scripts/colors.sh'
+source 'utils.sh'
 
 STATUS=${ORANGE}
 SUCCESS=${LGREEN}
@@ -17,7 +18,7 @@ echo -e ${STATUS}'Copying scripts to ~/bin'${NC}
 mkdir -p ~/bin
 for file in scripts/*; do
 	if [[ -f $file ]]; then
-		cp --verbose $file ~/bin/
+		cp $file ~/bin/
 	fi
 done
 echo -e ${STATUS}'Copying completed.'${NC}
@@ -68,7 +69,11 @@ fi
 # Now install zsh related features
 if [ -z $(which zsh) ]; then
 	echo -e ${STATUS}Installing zsh ...${NC}
-	sudo apt-get -y install zsh
+	if [[ is_mac ]]; then
+		brew install zsh
+	else
+		sudo apt-get -y install zsh
+	fi
 	echo -e ${SUCCESS}Installed zsh. ${NC}
 fi
 
@@ -76,13 +81,15 @@ echo -e ${STATUS}Installing oh-my-zsh ... ${NC}
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 echo -e ${SUCCESS}Installed oh-my-zsh. ${NC}
 
-echo -e ${STATUS}Installing powerline fonts ... ${NC}
-sudo apt-get -y install fonts-powerline
-echo -e ${SUCCESS}Installed powerline fonts. ${NC}
+if [[ ! is_mac ]]; then
+	echo -e ${STATUS}Installing powerline fonts ... ${NC}
+	sudo apt-get -y install fonts-powerline
+	echo -e ${SUCCESS}Installed powerline fonts. ${NC}
+fi
 
 echo -e ${STATUS}Installing zsh-autosuggestions ... ${NC}
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-sed -i 's/fg=8/fg=4/' ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+cp customizations.zsh ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
 echo -e ${SUCCESS}Installed zsh-autosuggestions. ${NC}
 
 echo -e ${STATUS}Installing z jump around ... ${NC}
@@ -93,9 +100,11 @@ echo -e ${STATUS}Copying .zshrc ... ${NC}
 cp .zshrc ~/.zshrc
 echo -e ${SUCCESS}Copied .zshrc. ${NC}
 
-echo -e ${STATUS}Setting default shell to zsh... ${NC}
-chsh -s $(which zsh)
-echo -e ${SUCCESS}Completed. ${NC}
+if [[ ! is_mac ]]; then
+	echo -e ${STATUS}Setting default shell to zsh... ${NC}
+	chsh -s $(which zsh)
+	echo -e ${SUCCESS}Completed. ${NC}
+fi
 
 echo -e ${STATUS}Configuring tmux ${NC}
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
