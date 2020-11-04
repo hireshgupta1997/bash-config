@@ -22,6 +22,8 @@ for file in scripts/*; do
 	fi
 done
 echo -e ${STATUS}'Copying completed.'${NC}
+echo -e ${STATUS}'Adding rsub to bin folder.'${NC}
+wget -O ~/bin/rsub https://raw.github.com/aurora/rmate/master/rmate && chmod a+x ~/bin/rsub
 echo -e ${SUCCESS}'Scripts Installation Complete.'${NC}
 
 VIM_PATH=$(which vim)
