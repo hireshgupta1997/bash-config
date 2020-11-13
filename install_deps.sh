@@ -10,6 +10,7 @@ if is_mac; then
 	brew install cmake
 	brew install tmux
 	brew install gnu-sed
+	brew install findutils
 else
 	sudo apt-get install cmake python3-dev build-essential
 fi
