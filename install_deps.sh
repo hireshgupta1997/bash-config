@@ -11,6 +11,7 @@ if is_mac; then
 	brew install tmux
 	brew install gnu-sed
 	brew install findutils
+	brew cask install rectangle
 else
 	sudo apt-get install cmake python3-dev build-essential
 fi
