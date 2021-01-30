@@ -13,6 +13,8 @@ if is_mac; then
 	brew install findutils
 	brew install watch wget
 	brew cask install rectangle
+	xcode-select --install
+	gem install --user-install bundler jekyll
 else
 	sudo apt-get install cmake python3-dev build-essential
 fi
