@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 source utils.sh
 
-if is_mac; then
+if (( is_mac )); then
 	if [[ $(command -v brew) == "" ]]; then
 		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 	fi

@@ -71,7 +71,7 @@ fi
 # Now install zsh related features
 if [ -z $(which zsh) ]; then
 	echo -e ${STATUS}Installing zsh ...${NC}
-	if [[ is_mac ]]; then
+	if (( is_mac )); then
 		brew install zsh
 	else
 		sudo apt-get -y install zsh
@@ -83,7 +83,7 @@ echo -e ${STATUS}Installing oh-my-zsh ... ${NC}
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 echo -e ${SUCCESS}Installed oh-my-zsh. ${NC}
 
-if [[ ! is_mac ]]; then
+if (( ! is_mac )); then
 	echo -e ${STATUS}Installing powerline fonts ... ${NC}
 	sudo apt-get -y install fonts-powerline
 	echo -e ${SUCCESS}Installed powerline fonts. ${NC}
@@ -102,7 +102,7 @@ echo -e ${STATUS}Copying .zshrc ... ${NC}
 cp .zshrc ~/.zshrc
 echo -e ${SUCCESS}Copied .zshrc. ${NC}
 
-if [[ ! is_mac ]]; then
+if (( ! is_mac )); then
 	echo -e ${STATUS}Setting default shell to zsh... ${NC}
 	chsh -s $(which zsh)
 	echo -e ${SUCCESS}Completed. ${NC}
